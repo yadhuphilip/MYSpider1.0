@@ -31,9 +31,10 @@ count = 1
 fPtr = open(FILE_NAME,'w')
 while ENTRY_URL and count <= LIMIT:
     flag = 1
-
+    print(count)
     
     response = requests.get(ENTRY_URL)
+    
     if response.status_code == 200:
         content = BeautifulSoup(response.text, 'html.parser')
         #(content.prettify())
@@ -48,7 +49,7 @@ while ENTRY_URL and count <= LIMIT:
             else:
                 UNIQUE_SET.add(newUrl)
 
-            if( urlValidator(newUrl) and flag):
+            if(urlValidator(newUrl)):
 
                 world.append(newUrl) 
                 preparedStr = prepareUrlForFile(count, newUrl)
